@@ -1,6 +1,5 @@
-import * as Rx from 'rxjs';
-
 declare namespace horizon {
+  import * as Rx from 'rxjs';
   export interface Horizon {
     find<A>(): Rx.Observable<A>;
 
