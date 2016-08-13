@@ -27,9 +27,11 @@ declare namespace horizon {
   }
   export var Horizon: HorizonConstructor;
 
+  export type OrderType = 'ascending' | 'descending';
+  export type RangeType = 'closed' | 'open';
   export interface TableQuery<A> extends FinalQuery<A> {
-    order(field: string, direction?: string): OrderQuery<A>; // default ascending
-    above(idOrObject: string|any, type?: string): OrderQuery<A>; // default open(exclusive)
+    order(field: string, direction?: OrderType): OrderQuery<A>; // default ascending
+    above(idOrObject: string|any, type?: RangeType): OrderQuery<A>; // default open(exclusive)
   }
   export interface FinalQuery<A> {
     limit(max: number): LimitedFinalQuery<A>;
@@ -72,10 +74,11 @@ declare namespace horizon {
     update(o: OldRecord): TableQuery<CreatedObject>;
     upsert(o: Record|OldRecord): TableQuery<CreatedObject>;
   }
-}
-namespace horizon {
-  export const ASCENDING: string = 'ascending';
-  export const DESCENDING: string = 'descending';
-  export const INCLUSIVE: string = 'closed';
-  export const EXCLUSIVE: string = 'open';
+  /** @deprecated typings style discourage having real values */
+  namespace param {
+    export const ASCENDING: string = 'ascending';
+    export const DESCENDING: string = 'descending';
+    export const INCLUSIVE: string = 'closed';
+    export const EXCLUSIVE: string = 'open';
+  }
 }
