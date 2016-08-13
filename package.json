@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "echo building... && typings bundle --global -o out/src/main.d.ts",
+    "build": "echo building... && typings bundle --global -o out/global/main.d.ts",
     "lint": "echo linting... && tslint \"**/*.ts\" -e \"source/**\" -e \"source-test/**\" -e \"out/**\" -e \"node_modules/**\" -e \"typings/**\"",
     "browser-test": "echo running browser tests... && node npm-scripts/test \"test/**/*.ts\"",
     "source-test": "echo running source tests... &&  echo no source test",
