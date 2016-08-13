@@ -22,18 +22,24 @@ declare namespace horizon {
   }
   export interface HorizonConstructor {
     new(param?: {
-      host?: string
-      ,authType?: string
+      host?: string         // default to window.location
+      , secure?: boolean    // default to true
+      , path?: string       // default to "horizon"
+      , lazyWrites: boolean // default to false
+      , authType?: AuthType // default to "unauthenticated"
     }): Horizon;
     clearAuthToken(): void;
   }
   export var Horizon: HorizonConstructor;
 
+  export type AuthType  = 'unauthenticated' | 'anonymous' | 'token';
+  export type AuthToken = {token: any, storeLocally: boolean};
   export type OrderType = 'ascending' | 'descending';
   export type RangeType = 'closed' | 'open';
+
   export interface TableQuery<A> extends FinalQuery<A> {
-    order(field: string, direction?: OrderType): OrderQuery<A>; // default ascending
-    above(idOrObject: string|any, type?: RangeType): OrderQuery<A>; // default open(exclusive)
+    order(field: string, direction?: OrderType): OrderQuery<A>;     // default to "ascending"
+    above(idOrObject: string|any, type?: RangeType): OrderQuery<A>; // default to "open" (exclusive)
   }
   export interface FinalQuery<A> {
     limit(max: number): LimitedFinalQuery<A>;
