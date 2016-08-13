@@ -82,3 +82,7 @@ declare namespace horizon {
     export const EXCLUSIVE: string = 'open';
   }
 }
+
+declare module 'horizon' {
+  export = horizon;
+}
