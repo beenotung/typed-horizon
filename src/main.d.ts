@@ -5,7 +5,7 @@ declare namespace horizon {
 
     call<A>(_this: Horizon, table: string): TableObject<A>;
 
-    <A> (): TableObject<A>;
+    <A> (name:string): TableObject<A>;
 
     currentUser(): TableQuery<any>;
 
