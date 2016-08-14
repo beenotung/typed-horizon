@@ -20,11 +20,11 @@ declare namespace horizon {
     onSocketError(f: (error: any)=>void): void;
   }
   export interface HorizonConstructorParam {
-    host?: string         // default to window.location
-    , secure?: boolean    // default to true
-    , path?: string       // default to "horizon"
-    , lazyWrites?: boolean // default to false
-    , authType?: AuthType // default to "unauthenticated"
+    host?: string;        // default to window.location
+    secure?: boolean;     // default to true
+    path?: string;        // default to "horizon"
+    lazyWrites?: boolean; // default to false
+    authType?: AuthType;  // default to "unauthenticated"
   }
   export interface HorizonConstructor {
     new(param?: HorizonConstructorParam): Horizon;
