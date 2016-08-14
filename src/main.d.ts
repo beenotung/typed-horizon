@@ -60,9 +60,7 @@ declare namespace horizon {
   export interface CreatedObject {
     id: string;
   }
-  export interface Filter {
-    [key: string]: any;
-  }
+  export type Filter = string | Record;
   export interface Record {
     id?: string;
     [key: string]: string|Array<Record>|number|Record;
@@ -72,12 +70,12 @@ declare namespace horizon {
     [key: string]: string|Array<Record>|number|Record;
   }
   export interface TableObject<A> extends TableQuery<A> {
-    find(o: string|Filter): FindQuery<A>;
-    findAll(...o: [string|Filter][]): TableQuery<A>;
+    find(o: Filter): FindQuery<A>;
+    findAll(...o: Filter[]): TableQuery<A>;
     insert(o: Record): TableObject<CreatedObject>;
-    remove(o: string|Filter): TableObject<CreatedObject>;
-    removeAll(o: string|Filter): Rx.Observable<CreatedObject>;
-    replace(...o: [string|Filter][]): Rx.Observable<CreatedObject>;
+    remove(o: Filter): TableObject<CreatedObject>;
+    removeAll(o: Filter): Rx.Observable<CreatedObject>;
+    replace(...o: Filter[]): Rx.Observable<CreatedObject>;
     store(o: Record): Rx.Observable<CreatedObject>;
     update(o: OldRecord): TableQuery<CreatedObject>;
     upsert(o: Record|OldRecord): TableQuery<CreatedObject>;
