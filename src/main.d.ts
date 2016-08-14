@@ -64,7 +64,7 @@ declare namespace horizon {
   /* local record, not yet stored */
   export interface NewRecord {
     id?: string;
-    [key: string]: string|Array<NewRecord>|number|NewRecord;
+    [key: string]: string|Array<NewRecord>|number|boolean|NewRecord;
   }
   /* get from database */
   export interface OldRecord extends NewRecord {
