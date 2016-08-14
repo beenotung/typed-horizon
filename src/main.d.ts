@@ -81,13 +81,6 @@ declare namespace horizon {
     update(oneOrList: OldRecord|OldRecord[]): TableQuery<CreatedObject>;
     upsert(oneOrList: NewRecord|OldRecord|(NewRecord|OldRecord)[]): TableQuery<CreatedObject>;
   }
-  /** @deprecated typings style discourage having real values */
-  namespace param {
-    export const ASCENDING: string = 'ascending';
-    export const DESCENDING: string = 'descending';
-    export const INCLUSIVE: string = 'closed';
-    export const EXCLUSIVE: string = 'open';
-  }
 }
 
 declare module 'horizon' {
