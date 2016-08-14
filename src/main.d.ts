@@ -60,25 +60,26 @@ declare namespace horizon {
   export interface CreatedObject {
     id: string;
   }
-  export type Filter = string | Record;
-  export interface Record {
+  export type Filter = string | OldRecord;
+  /* local record, not yet stored */
+  export interface NewRecord {
     id?: string;
-    [key: string]: string|Array<Record>|number|Record;
+    [key: string]: string|Array<NewRecord>|number|NewRecord;
   }
-  export interface OldRecord {
+  /* get from database */
+  export interface OldRecord extends NewRecord {
     id: string;
-    [key: string]: string|Array<Record>|number|Record;
   }
   export interface TableObject<A> extends TableQuery<A> {
-    find(o: Filter): FindQuery<A>;
-    findAll(...o: Filter[]): TableQuery<A>;
-    insert(o: Record): TableObject<CreatedObject>;
-    remove(o: Filter): TableObject<CreatedObject>;
-    removeAll(o: Filter): Rx.Observable<CreatedObject>;
-    replace(...o: Filter[]): Rx.Observable<CreatedObject>;
-    store(o: Record): Rx.Observable<CreatedObject>;
-    update(o: OldRecord): TableQuery<CreatedObject>;
-    upsert(o: Record|OldRecord): TableQuery<CreatedObject>;
+    find(x: Filter): FindQuery<A>;
+    findAll(x: Filter, ...xs: Filter[]): TableQuery<A>;
+    insert(oneOrList: NewRecord|NewRecord[]): TableObject<CreatedObject>;
+    remove(x: Filter): TableObject<CreatedObject>;
+    removeAll(xs: Filter[]): Rx.Observable<CreatedObject>;
+    replace(oneOrList: OldRecord|OldRecord[]): Rx.Observable<CreatedObject>;
+    store(oneOrList: NewRecord|OldRecord|(NewRecord|OldRecord)[]): Rx.Observable<CreatedObject>;
+    update(oneOrList: OldRecord|OldRecord[]): TableQuery<CreatedObject>;
+    upsert(oneOrList: NewRecord|OldRecord|(NewRecord|OldRecord)[]): TableQuery<CreatedObject>;
   }
   /** @deprecated typings style discourage having real values */
   namespace param {
