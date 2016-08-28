@@ -61,7 +61,6 @@ declare module 'horizon' {
     export interface CreatedObject {
       id: string;
     }
-    export type Filter = string | OldRecord;
     /* local record, not yet stored */
     export interface NewRecord {
       id?: string;
@@ -72,11 +71,11 @@ declare module 'horizon' {
       id: string;
     }
     export interface TableObject<A> extends TableQuery<A> {
-      find(x: Filter): FindQuery<A>;
-      findAll(x: Filter, ...xs: Filter[]): TableQuery<A>;
+      find(x: string|NewRecord): FindQuery<A>;
+      findAll(x: string|NewRecord, ...xs: Array<string|NewRecord>): TableQuery<A>;
       insert(oneOrList: NewRecord|NewRecord[]): TableObject<CreatedObject>;
-      remove(x: Filter): TableObject<CreatedObject>;
-      removeAll(xs: Filter[]): Rx.Observable<CreatedObject>;
+      remove(x: string|OldRecord): TableObject<CreatedObject>;
+      removeAll(xs: Array<string|OldRecord>): Rx.Observable<CreatedObject>;
       replace(oneOrList: OldRecord|OldRecord[]): Rx.Observable<CreatedObject>;
       store(oneOrList: NewRecord|OldRecord|(NewRecord|OldRecord)[]): Rx.Observable<CreatedObject>;
       update(oneOrList: OldRecord|OldRecord[]): TableQuery<CreatedObject>;
