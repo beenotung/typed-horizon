@@ -1,7 +1,9 @@
-# Typed Horizon  [![Build Status](https://travis-ci.org/beenotung/typed-horizon.svg?branch=master)](https://travis-ci.org/beenotung/typed-horizon)
+# Typed Horizon (deprecated)  [![Build Status](https://travis-ci.org/beenotung/typed-horizon.svg?branch=master)](https://travis-ci.org/beenotung/typed-horizon)
 
 
 The type definition for [`horizon`](https://github.com/rethinkdb/horizon.git)
+
+Moved to [typeStub-horizon-client](https://github.com/beenotung/typeStub-horizon-client)
 
 ## LICENSE
 
